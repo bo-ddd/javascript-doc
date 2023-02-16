@@ -54,3 +54,4 @@ function getOrderStatus(orderType){
 
 1. 一个方法通常情况下只能实现一个功能；
 2. 如果想通过一些逻辑实现一个值，则该方法通常用get开头，并return一个结果值；
+3. 方法的命名应该遵循驼峰命名法；
