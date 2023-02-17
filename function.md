@@ -120,21 +120,23 @@ function print(){
    function getPersonInfo(){}
    ```
 
-4. 高阶进阶： 你可以利用一个方法的入参，来实现更灵活的逻辑应用
+4. 一个方法代表一个行为，是一种动作，所以，如果在你写逻辑时，需要做一件事，且这件事需要复用，就可以封装成一个方法；
+
+5. 基于上一条说明，你可以利用给一个方法增加一个或者多个入参，来实现不同的对象进行不同行为，从而使方法变得更灵活：
 
    ```javascript
-   setElementStyleCenter(document.getElmentById("dialog"))
-   setElementStyleCenter(document.getElmentById("box"))
+   // 比如有一个应用场景：
+   // 想让 不同的人去商品里买不同的商品，我们可以写成：
    
-   //设置el元素的上下左右居中；
-   function setElementStyleCenter(el){
-       el.style.cssText = `
-   		display:flex;
-   		justify-space: center;
-   		flex-direction: column;
-   		align-items: center;
-   	`
+   buy('小明', 'iphone13')  // 小明购买了iphone13
+   
+   buy('小红', '裙子')  // 小红购买了裙子
+   
+   function buy(userName, goodsName){
+       console.log(userName + '购买了' + goodsName);
    }
    ```
 
-5. 一个方法代表一个行为，是一种动作，所以，如果在你写逻辑时，需要做一件事，且这件事需要复用，就可以封装成一个方法；
+6. 绝大多数的方法中，为了方法的可读性，一个方法的形参数量会小于等于三个；
+
+7. 但在一个三方的api中，一个方法的形参不超过6个；
