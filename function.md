@@ -55,3 +55,86 @@ function getOrderStatus(orderType){
 1. 一个方法通常情况下只能实现一个功能；
 2. 如果想通过一些逻辑实现一个值，则该方法通常用get开头，并return一个结果值；
 3. 方法的命名应该遵循驼峰命名法；
+
+#### 场景二： 如果一些逻辑实现的功能需要重复调用时，可以封装成function
+
+```javascript
+// 场景需求：
+// 我需要在进入页面的时候，在控制台分别输出1，2，3，4，5；
+// 同时当我点击一个按钮时，也需要在控制台分别输出1,2,3,4,5;
+
+console.log(1);
+console.log(2)
+console.log(3)
+console.log(4)
+console.log(5)
+
+document.querySelector("button").onclick = function(){
+    console.log(1);
+    console.log(2)
+    console.log(3)
+    console.log(4)
+    console.log(5)
+}
+```
+
+上列方法中，我们会在打开页面的时候，代码在控制台分别出输1，2，3，4，5，并且当我们点击按钮时也会输出1，2，3，4，5；我们为了简化逻辑，就可以封装成function：
+
+```javascript
+print();
+
+document.querySelector("button").onclick = function(){
+    print();
+}
+
+function print(){
+    console.log(1);
+    console.log(2)
+    console.log(3)
+    console.log(4)
+    console.log(5)
+}
+```
+
+注：
+
+1. 方法的封装是为了满足复用性，把相同的逻辑封装在一起；
+
+2. 但是需要注意的是，在一个方法中，不要有当前作用域之外的任何变量，比如：
+
+   ```javascript
+   let a = 1;
+   function fn(){
+       console.log(a)// 这样写是不对的； 因为当前作用域中，没有a;
+   }
+   ```
+
+3. 方法的命名一定要语意化，且一个页面中有且应该只有一个同一维度的的命名，比如：
+
+   ```javascript
+   // 错误示范：  用户和人本身指的是一个物体，属于同一个维度； 所以此命名是不规范的；
+   
+   // 获取用户信息
+   function getUserInfo(){}
+   // 获取人信息
+   function getPersonInfo(){}
+   ```
+
+4. 高阶进阶： 你可以利用一个方法的入参，来实现更灵活的逻辑应用
+
+   ```javascript
+   setElementStyleCenter(document.getElmentById("dialog"))
+   setElementStyleCenter(document.getElmentById("box"))
+   
+   //设置el元素的上下左右居中；
+   function setElementStyleCenter(el){
+       el.style.cssText = `
+   		display:flex;
+   		justify-space: center;
+   		flex-direction: column;
+   		align-items: center;
+   	`
+   }
+   ```
+
+   
