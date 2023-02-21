@@ -162,7 +162,7 @@ buy('小红', '裙子', function(){
     console.log('最后')
 })
 
-//通过这个购买函数，我们可以实现一个用户在购买一件商品这前做一些自己想做的事情；
+//通过这个购买函数，我们可以实现一个用户在购买一件商品之前做一些自己想做的事情；
 function buy(userName, goodsName, beforeBuyCallback){
     if(beforeBuyCallback) beforeBuyCallback();
     console.log(userName + '购买了' + goodsName);
